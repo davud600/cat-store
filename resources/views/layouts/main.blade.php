@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
@@ -6,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Laravel</title>
+    @yield('title')
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -13,10 +15,14 @@
     @vite('resources/css/app.css')
 </head>
 
-<body class="antialiased">
-    <span class="text-black font-black text-2xl">
-        haha
-    </span>
+<body>
+    <x-header />
+
+    <main>
+        @yield('content')
+    </main>
+
+    <x-footer />
 </body>
 
 </html>
