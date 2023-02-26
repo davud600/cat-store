@@ -77,4 +77,24 @@
 
 
 </section>
+<section id="buy-section" class="px-16">
+    <div class="flex px-16 py-10 bg-blue-100 h-96">
+        <div class="flex flex-col w-1/2 gap-6 text-center justify-center">
+            <span class="text-3xl">Buy any kind of cat you want</span>
+            <form action="#">
+                <input type="text" placeholder="Search for any cat breed" class="nosubmit border-red-600 bg-transparent border-solid border-2 rounded-2xl pl-20 pr-24 py-4">
+            </form>
+        </div>
+    </div>
+    <div class="grid my-24">
+        <div class="drop-shadow-xl h-96 w-72 bg-white p-2">
+            <img src="hero-cat-images/cat0.jpg" alt="image of cat :)" class="w-full h-72 object-cover mb-1">
+            <div class="flex flex-col gap-1">
+                <span class="text-lg">Cat name</span>
+                <span class="text-md text-red-600 font-bold">5000€</span>
+                <span class="text-sm text-gray-500">4 months old</span>
+            </div>
+        </div>
+    </div>
+</section>
 @endsection

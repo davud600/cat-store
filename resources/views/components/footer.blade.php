@@ -1,4 +1,4 @@
-<footer class="bg-blue-200 min-h-52 p-16 flex justify-between w-full">
+<footer class="bg-blue-100 min-h-52 p-16 flex justify-between w-full">
     <div class="flex flex-col w-1/2 gap-6">
         <span class="text-5xl">Cat-Store</span>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Blandit malesuada dapibus ut pulvinar neque arcu, commodo. Pharetra nisi egestas nisi fermentum. Sollicitudin egestas senectus pellentesque enim mauris vel odio commodo. Pellentesque orci vestibulum sed in molestie consequat.</p>
