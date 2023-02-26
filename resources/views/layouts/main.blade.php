@@ -18,11 +18,41 @@
 <body>
     <x-header />
 
-    <main>
+    <main class="overflow-x-hidden">
         @yield('content')
     </main>
 
     <x-footer />
+
+    <script defer>
+        const navbarElem = document.getElementById("navbar");
+        const logoElem = document.getElementById("logo");
+        const initialPaddingY = navbarElem.style.paddingTop;
+
+        const scrollThreshold = 10;
+        let lastScrollTop = 0;
+
+        window.onscroll = function() {
+            let st = document.documentElement.scrollTop;
+            if (st > lastScrollTop + scrollThreshold) {
+                shrinkNavbar();
+            } else if (st < lastScrollTop - scrollThreshold) {
+                resetNavbar();
+            }
+
+            lastScrollTop = st <= 0 ? 0 : st; // For Mobile or negative scrolling
+        };
+
+        function shrinkNavbar() {
+            navbarElem.style.paddingTop = "0.45rem";
+            navbarElem.style.paddingBottom = "0.45rem";
+        }
+
+        function resetNavbar() {
+            navbarElem.style.paddingTop = initialPaddingY;
+            navbarElem.style.paddingBottom = initialPaddingY;
+        }
+    </script>
 </body>
 
 </html>
