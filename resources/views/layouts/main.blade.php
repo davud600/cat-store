@@ -29,7 +29,7 @@
         const logoElem = document.getElementById("logo");
         const initialPaddingY = navbarElem.style.paddingTop;
 
-        const scrollThreshold = 10;
+        const scrollThreshold = 7;
         let lastScrollTop = 0;
 
         window.onscroll = function() {

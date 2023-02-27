@@ -16,11 +16,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     $total_cats = 3;
     $url = 'https://cataas.com/cat';
+    $error = '';
 
     for ($i = 0; $i < $total_cats; $i++) {
         $img = public_path('hero-cat-images\cat' . $i . '.jpg');
-        file_put_contents($img, file_get_contents($url));
+        $fileContents = @file_get_contents($url);
+        if ($fileContents) file_put_contents($img, $fileContents);
+        else $error = "Could not connect to Cataas api, so images of cats won't be showing :(";
     }
 
-    return view('pages.home', ['total_cats' => $total_cats]);
+    return view('pages.home', ['total_cats' => $total_cats, 'error' => $error]);
 });
