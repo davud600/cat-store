@@ -50,22 +50,22 @@
 @endif
 <section id="hero-section">
     <!-- Section title container -->
-    <div class="w-full flex justify-center my-16 md:px-16 px-6 text-center">
-        <h1 class="md:text-3xl text-2xl font-semibold">There are many reasons why you should get a cat: </h1>
+    <div class="w-full flex justify-center my-4 md:my-10 md:px-16 px-6 text-center">
+        <h1 class="md:text-3xl text-xl font-semibold">There are many reasons why you should get a cat: </h1>
     </div>
 
     <!-- Slideshow container -->
     <div id="slideshow-container" class="min-w-fit m-auto relative">
         <div class="slide-item">
-            <img src="hero-cat-images/cat0.jpg" alt="image of cat :)" class="w-full object-contain" style="height: 500px;">
+            <img src="hero-cat-images/cat0.jpg" alt="image of cat :)" class="w-full object-contain" style="height: 485px;">
         </div>
 
         <div class="slide-item hidden">
-            <img src="hero-cat-images/cat1.jpg" alt="image of cat :)" class="w-full object-contain" style="height: 500px;">
+            <img src="hero-cat-images/cat1.jpg" alt="image of cat :)" class="w-full object-contain" style="height: 485px;">
         </div>
 
         <div class="slide-item hidden">
-            <img src="hero-cat-images/cat2.jpg" alt="image of cat :)" class="w-full object-contain" style="height: 500px;">
+            <img src="hero-cat-images/cat2.jpg" alt="image of cat :)" class="w-full object-contain" style="height: 485px;">
         </div>
 
         <!-- Next and previous buttons -->
@@ -120,15 +120,19 @@
             </div>
         </div>
     </div>
+
+    <!-- Items (cats) -->
     <div class="justify-between grid my-24 lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-5">
-        <div class="drop-shadow-xl h-96 bg-white p-2 cursor-pointer hover:scale-105 hover:z-10 transition-all">
+        @foreach($cats as $cat)
+        <a href="/{{ $cat['id'] }}" class="block drop-shadow-xl h-96 bg-white p-2 cursor-pointer hover:scale-105 hover:z-10 transition-all">
             <img src="hero-cat-images/cat0.jpg" alt="image of cat :)" class="w-full h-72 object-cover mb-1">
             <div class="flex flex-col gap-1">
-                <span class="text-lg">Cat name</span>
-                <span class="text-md text-red-600 font-bold">5000€</span>
+                <span class="text-lg">{{ $cat['name'] }}</span>
+                <span class="text-md text-red-600 font-bold">{{ $cat['price'] }}€</span>
                 <span class="text-sm text-gray-500">4 months old</span>
             </div>
-        </div>
+        </a>
+        @endforeach
     </div>
 </section>
 @endsection

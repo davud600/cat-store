@@ -17,6 +17,22 @@ Route::get('/', function () {
     $total_cats = 3;
     $url = 'https://cataas.com/cat';
     $error = '';
+    $cats = array(
+        [
+            'id' => 1,
+            'name' => 'Tom',
+            'breed' => 'persian',
+            'price' => 100,
+            'dob' => new DateTime('19-11-2022')
+        ],
+        [
+            'id' => 2,
+            'name' => 'Jerry',
+            'breed' => 'brown idk',
+            'price' => 200,
+            'dob' => new DateTime('19-11-2021')
+        ]
+    );
 
     for ($i = 0; $i < $total_cats; $i++) {
         $img = public_path('hero-cat-images\cat' . $i . '.jpg');
@@ -25,5 +41,9 @@ Route::get('/', function () {
         else $error = "Could not connect to Cataas api, so images of cats won't be showing :(";
     }
 
-    return view('pages.home', ['total_cats' => $total_cats, 'error' => $error]);
+    return view('pages.home', [
+        'error' => $error,
+        'total_cats' => $total_cats,
+        'cats' => $cats
+    ]);
 });
