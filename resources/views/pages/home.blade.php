@@ -40,14 +40,6 @@
 @endsection
 
 @section('content')
-@if($error != '')
-<div id="error-alert" class="rounded-lg drop-shadow-xl md:w-96 w-72 text-center top-36 left-0 right-0 h-20 ml-auto mr-auto bg-red-50 md:px-5 md:py-4 py-3 px-4 fixed z-50">
-    <button class="text-red-800 md:text-2xl text-xl font-semibold w-4 h-4 p-4 mt-1 absolute top-0 right-0 mr-1" onclick="this.parentElement.style.display='none';">
-        <span class="absolute left-0 right-0 top-0 bottom-0">x</span>
-    </button>
-    <span class="md:text-lg text-base text-red-700 font-semibold">{{ $error }}</span>
-</div>
-@endif
 <section id="hero-section">
     <!-- Section title container -->
     <div class="w-full flex justify-center my-4 md:my-10 md:px-16 px-6 text-center">
@@ -56,21 +48,15 @@
 
     <!-- Slideshow container -->
     <div id="slideshow-container" class="min-w-fit m-auto relative">
-        <div class="slide-item">
-            <img src="hero-cat-images/cat0.jpg" alt="image of cat :)" class="w-full object-contain" style="height: 485px;">
-        </div>
 
-        <div class="slide-item hidden">
-            <img src="hero-cat-images/cat1.jpg" alt="image of cat :)" class="w-full object-contain" style="height: 485px;">
-        </div>
+        @for ($i = 0; $i < env('TOTAL_HOMEPAGE_CATS'); $i++) <div class="slide-item {{ $i > 0 ? 'hidden':'' }}">
+            <img src="hero-cat-images/cat{{ $i }}.jpg" alt="image of cat :)" class="w-full object-contain" style="height: 485px;">
+    </div>
+    @endfor
 
-        <div class="slide-item hidden">
-            <img src="hero-cat-images/cat2.jpg" alt="image of cat :)" class="w-full object-contain" style="height: 485px;">
-        </div>
-
-        <!-- Next and previous buttons -->
-        <a class="prev cursor-pointer absolute left-0 top-1/2 w-auto -mt-14 p-8 text-blue-300 font-bold text-4xl transition-all hover:text-blue-500" onclick="plusSlides(-1)">&#10094;</a>
-        <a class="next cursor-pointer absolute right-0 top-1/2 w-auto -mt-14 p-8 text-blue-300 font-bold text-4xl transition-all hover:text-blue-500" onclick="plusSlides(1)">&#10095;</a>
+    <!-- Next and previous buttons -->
+    <a class="prev cursor-pointer absolute left-0 top-1/2 w-auto -mt-14 p-8 text-blue-300 font-bold text-4xl transition-all hover:text-blue-500" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next cursor-pointer absolute right-0 top-1/2 w-auto -mt-14 p-8 text-blue-300 font-bold text-4xl transition-all hover:text-blue-500" onclick="plusSlides(1)">&#10095;</a>
     </div>
 
     <!-- The dots/circles -->
@@ -124,8 +110,8 @@
     <!-- Items (cats) -->
     <div class="justify-between grid my-24 lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-5">
         @foreach($cats as $cat)
-        <a href="/{{ $cat['id'] }}" class="block drop-shadow-xl h-96 bg-white p-2 cursor-pointer hover:scale-105 hover:z-10 transition-all">
-            <img src="hero-cat-images/cat0.jpg" alt="image of cat :)" class="w-full h-72 object-cover mb-1">
+        <a href="/cat/{{ $cat['id'] }}" class="block drop-shadow-xl h-96 bg-white p-2 cursor-pointer hover:scale-105 hover:z-10 transition-all">
+            <img src="\cat-showcase-images\{{ $cat['id'] }}\0.jpg" alt="image of cat :)" class="w-full h-72 object-cover mb-1">
             <div class="flex flex-col gap-1">
                 <span class="text-lg">{{ $cat['name'] }}</span>
                 <span class="text-md text-red-600 font-bold">{{ $cat['price'] }}€</span>

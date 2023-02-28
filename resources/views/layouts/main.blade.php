@@ -18,6 +18,8 @@
 <body>
     <x-header />
 
+    <x-alert />
+
     <main class="overflow-x-hidden">
         @yield('content')
     </main>
