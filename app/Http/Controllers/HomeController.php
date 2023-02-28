@@ -33,7 +33,7 @@ class HomeController extends Controller
         ]);
     }
 
-    private function downloadCatImages()
+    private function downloadCatImages(): void
     {
         for ($i = 0; $i < env('TOTAL_HOMEPAGE_CATS'); $i++) {
             $img = public_path('hero-cat-images\cat' . $i . '.jpg');

@@ -20,4 +20,7 @@ Route::get('/', HomeController::class);
 
 Route::get('/cat/{id}', [CatController::class, 'cat']);
 
-Route::get('/shipping', [CheckoutController::class, 'shipping']);
+Route::controller(CheckoutController::class)->group(function () {
+    Route::get('/shipping', 'shipping');
+    Route::post('/save-shipping-info', 'saveShippingInfo');
+});

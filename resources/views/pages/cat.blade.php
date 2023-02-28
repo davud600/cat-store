@@ -22,7 +22,7 @@
             <div class="flex flex-col gap-2">
                 <h3 class="text-xl font-semibold">Description:</h3>
                 <p class="text-gray-600">AirPods Pro •••Support wireless charging Contact: 0627468298 * 10 meters is not stuck & continuous. * Squeeze sensor * Call to listen to songs for 3+ hours , long battery life * Out of the box automatic boot/ automatic pairing * Perfectly compatible with IOS /Android and all mobile phones * Transparency mode * High speaker quality * HIFI stereo stereo super quality</p>
-                <a class="button text-center cursor-pointer bg-red-600 w-48 py-2 px-1 text-white rounded-lg font-bold my-4 hover:bg-red-800 transition-all" href="/shipping">Adopt Now</a>
+                <a class="button text-center cursor-pointer bg-red-600 w-48 py-3 px-1 text-white rounded-lg font-bold my-4 hover:bg-red-800 transition-all" href="/shipping">Adopt Now</a>
             </div>
         </article>
     </div>

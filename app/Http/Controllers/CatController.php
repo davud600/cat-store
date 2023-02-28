@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use DateTime;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
 class CatController extends Controller
 {
-    public function cat($id)
+    public function cat($id): View
     {
         $cats = array(
             [
