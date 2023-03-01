@@ -5,7 +5,8 @@
 @endsection
 
 @section('content')
-<a class="button ml-5 mt-5 md:ml-14 md:mt-14 px-6 py-2 md:text-xl text-lg rounded-lg hover:bg-blue-400 transition-all text-white bg-blue-300" href="{{ url()->previous() }}">Back</a>
+<a class="button ml-5 mt-5 md:ml-14 md:mt-14 px-6 py-2 md:text-xl text-lg rounded-lg hover:bg-blue-400 transition-all text-white bg-blue-300" href="/cat/{{ session()->get('catInfo')['id'] }}">Back</a>
+
 <section id="shipping-section" class="px-4 md:px-14 py-12">
     <article class="flex flex-col items-center text-center gap-4 bg-gray-200 px-4 md:px-6 py-8 rounded-lg">
         <h1 class="text-2xl md:text-3xl font-semibold my-4">Shipping Information</h1>

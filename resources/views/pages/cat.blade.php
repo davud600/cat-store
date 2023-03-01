@@ -5,9 +5,11 @@
 @endsection
 
 @section('content')
-<section id="cat-section" class="my-8 px-4 md:px-14 py-16">
+<a class="button ml-5 mt-5 md:ml-14 md:mt-14 px-6 py-2 md:text-xl text-lg rounded-lg hover:bg-blue-400 transition-all text-white bg-blue-300" href="/">Back</a>
+
+<section id="cat-section" class="my-8 px-4 md:px-14 py-12">
     <div class="flex md:flex-row flex-col gap-4 bg-gray-200 px-4 md:px-6 py-8 rounded-lg">
-        <!-- Cat's images slider (single image temporarily) -->
+        <!-- Cat's showcase image -->
         <div class="md:mb-0 mb-4 w-full md:w-1/2 flex justify-center">
             <img class="object-cover rounded w-6/7 md:w-4/5" src="\cat-showcase-images\{{ $cat['id'] }}\0.jpg" alt="image of cat :)">
         </div>
