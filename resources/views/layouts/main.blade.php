@@ -18,7 +18,17 @@
 <body>
     <x-header />
 
-    <x-alert />
+    <div id="portal">
+        @if ($errors->any())
+        @foreach ($errors->all() as $error)
+        <x-alert error="{{ $error }}" />
+        @endforeach
+        @endif
+
+        @if (session('status'))
+        <x-alert error="{{ session('status') }}" />
+        @endif
+    </div>
 
     <main class="overflow-x-hidden">
         @yield('content')

@@ -104,6 +104,7 @@
 
         if (!validateInputs(formData)) {
             // display alert
+
             return;
         }
 
