@@ -18,7 +18,7 @@
 <body>
     <x-header />
 
-    <div id="portal">
+    <div id="portal" class="relative">
         @if ($errors->any())
         @foreach ($errors->all() as $error)
         <x-alert error="{{ $error }}" />
