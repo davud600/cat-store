@@ -32,10 +32,10 @@ class CheckoutController extends Controller
         return redirect('/checkout');
     }
 
-    public function processPayment(CheckoutPaymentRequest $request): RedirectResponse
+    public function processPayment(CheckoutPaymentRequest $request)
     {
         // save order to db
 
-        return redirect('/payment-success');
+        // clear session data
     }
 }

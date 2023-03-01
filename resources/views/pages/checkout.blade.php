@@ -120,7 +120,28 @@
         }
 
         // make request to CheckoutController::processPayment
+        paymentRequest(formData);
     });
+
+    async function paymentRequest(formData) {
+        try {
+            const res = await fetch('http://localhost:8000/payment', {
+                headers: {
+                    "Content-Type": "application/json",
+                    'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                },
+                method: "post",
+                body: JSON.stringify(formData)
+            });
+
+            console.log(res);
+
+            // redirect to thank you page
+            window.location.href = "/payment-success";
+        } catch (error) {
+            console.error(error);
+        }
+    }
 
     function validateInputs(formData) {
         const cardProcessor = getCardProcessor(formData.get('creditCard'));
