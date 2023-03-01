@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ShippingInfoRequest;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 
 class CheckoutController extends Controller
 {
@@ -14,8 +13,16 @@ class CheckoutController extends Controller
         return view('pages.shipping');
     }
 
+    public function checkout(): View
+    {
+        return view('pages.checkout');
+    }
+
     public function saveShippingInfo(ShippingInfoRequest $request): RedirectResponse
     {
+        // save shipping info to session
+        session()->put('shippingInfo', $request->all());
+
         return redirect('/checkout');
     }
 }

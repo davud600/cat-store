@@ -22,5 +22,6 @@ Route::get('/cat/{id}', [CatController::class, 'cat']);
 
 Route::controller(CheckoutController::class)->group(function () {
     Route::get('/shipping', 'shipping');
+    Route::get('/checkout', 'checkout');
     Route::post('/save-shipping-info', 'saveShippingInfo');
 });

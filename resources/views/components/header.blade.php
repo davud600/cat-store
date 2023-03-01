@@ -1,5 +1,5 @@
 <header class="sticky top-0 z-20">
-    <nav id="navbar" class="flex justify-between md:px-32 px-4 py-6 shadow-md items-center from-white to-pink-100 bg-gradient-to-t via-white transition-all duration-300">
+    <nav id="navbar" class="flex justify-between md:px-32 px-4 py-4 shadow-md items-center from-white to-pink-100 bg-gradient-to-t via-white transition-all duration-300">
         <a id="logo" class="font-black text-blue-400 md:text-4xl text-3xl" href="/">Cat-Store</a>
 
         <ul>
@@ -15,3 +15,33 @@
         </ul>
     </nav>
 </header>
+
+<script defer>
+    const navbarElem = document.getElementById("navbar");
+    const initialPaddingY = navbarElem.style.paddingTop;
+
+    const scrollShrinkThreshold = 7;
+    const scrollResetThreshold = 10;
+    let lastScrollTop = 0;
+
+    window.onscroll = function() {
+        let st = document.documentElement.scrollTop;
+        if (st > lastScrollTop + scrollShrinkThreshold) {
+            shrinkNavbar();
+        } else if (st < lastScrollTop - scrollResetThreshold) {
+            resetNavbar();
+        }
+
+        lastScrollTop = st <= 0 ? 0 : st; // For Mobile or negative scrolling
+    };
+
+    function shrinkNavbar() {
+        navbarElem.style.paddingTop = "0.25rem";
+        navbarElem.style.paddingBottom = "0.25rem";
+    }
+
+    function resetNavbar() {
+        navbarElem.style.paddingTop = initialPaddingY;
+        navbarElem.style.paddingBottom = initialPaddingY;
+    }
+</script>
