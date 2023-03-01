@@ -2,6 +2,10 @@
 
 @section('head')
 <script defer>
+    /*
+     * This script manages the image slider by
+     * keeping track of an index which represents the current active image
+     */
     let slideIndex = 1;
     showSlides(slideIndex);
 
@@ -115,7 +119,7 @@
             <div class="flex flex-col gap-1">
                 <span class="text-lg">{{ $cat['name'] }}</span>
                 <span class="text-md text-red-600 font-bold">{{ $cat['price'] }}€</span>
-                <span class="text-sm text-gray-500">4 months old</span>
+                <span class="text-sm text-gray-500">{{ $cat['dob']->diff(new DateTime())->format('%y years %m months %d days') }} old</span>
             </div>
         </a>
         @endforeach

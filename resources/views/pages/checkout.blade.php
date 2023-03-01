@@ -10,6 +10,38 @@
     <article class="flex flex-col items-center text-center gap-4 bg-gray-200 px-4 md:px-6 py-8 rounded-lg">
         <h1 class="text-2xl md:text-3xl font-semibold my-4">Checkout</h1>
 
+        <form id="checkoutForm" class="w-5/6 md:w-2/3 my-4 flex flex-col gap-6">
+            {{ csrf_field() }}
+
+            <label class="text-lg md:text-xl my-3">Payment info: </label>
+            <input id="name" name="name" class="w-full text-base md:text-lg pl-5 pr-3 rounded-lg py-2 text-gray-700" type="text" required placeholder="Name on card">
+            <input id="creditCard" name="creditCard" class="w-full text-base md:text-lg pl-5 pr-3 rounded-lg py-2 text-gray-700" type="text" required placeholder="Credit Card Number">
+            <div class="flex flex-col md:flex-row gap-6 md:gap-3">
+                <input id="expDate" name="expDate" class="w-full text-base md:text-lg pl-5 pr-3 rounded-lg py-2 text-gray-700" type="text" required placeholder="Expiration Date (MM/YY)" maxlength="5" onkeyup="modifyInput(this)">
+                <input id="secCode" name="secCode" class="w-full text-base md:text-lg pl-5 pr-3 rounded-lg py-2 text-gray-700" type="number" required placeholder="Security Code (CVV)" pattern="/^-?\d+\.?\d*$/" onkeypress="if (this.value.length === 4) return false;">
+            </div>
+            <input class="text-center cursor-pointer bg-red-500 md:w-48 w-full py-3 px-1 text-white rounded-lg font-bold my-4 hover:bg-red-700 transition-all" type="submit">
+        </form>
+
+        <div class="w-5/6 md:w-2/3">
+            <span class="text-lg md:text-xl my-3">Purchase info: </span>
+            <div class="my-4 w-full flex justify-between">
+                <div></div>
+                <div class="absolute flex flex-col gap-2 text-start w-1/2">
+                    <span class="text-gray-600 font-medium text-base md:text-lg">Name:</span>
+                    <span class="text-gray-600 font-medium text-base md:text-lg">Price:</span>
+                    <span class="text-gray-600 font-medium text-base md:text-lg">Age</span>
+                    <span class="text-gray-600 font-medium text-base md:text-lg">Description</span>
+                </div>
+                <div class="flex flex-col gap-2 text-end w-1/2">
+                    <span class="text-gray-600 text-base md:text-lg">{{ session()->get('catInfo')['name'] }}&nbsp;</span>
+                    <span class="text-gray-600 text-base md:text-lg">{{ session()->get('catInfo')['price'] }}€&nbsp;</span>
+                    <span class="text-gray-600 text-base md:text-lg">{{ session()->get('catInfo')['dob']->diff(new DateTime())->format('%y years %m months %d days') }} old&nbsp;</span>
+                    <span class="text-gray-600 text-base md:text-lg">{{ session()->get('catInfo')['description'] }}&nbsp;</span>
+                </div>
+            </div>
+        </div>
+
         <div class="w-5/6 md:w-2/3">
             <span class="text-lg md:text-xl my-3">Shipping info: </span>
             <div class="my-4 w-full flex justify-between">
@@ -35,20 +67,10 @@
                     <span class="text-gray-600 text-base md:text-lg">{{ session()->get('shippingInfo')['country'] }}&nbsp;</span>
                 </div>
             </div>
-        </div>
-
-        <form id="checkoutForm" class="w-5/6 md:w-2/3 my-4 flex flex-col gap-6">
-            {{ csrf_field() }}
-
-            <label class="text-lg md:text-xl my-3">Payment info: </label>
-            <input id="name" name="name" class="w-full text-base md:text-lg pl-5 pr-3 rounded-lg py-2 text-gray-700" type="text" required placeholder="Name on card">
-            <input id="creditCard" name="creditCard" class="w-full text-base md:text-lg pl-5 pr-3 rounded-lg py-2 text-gray-700" type="text" required placeholder="Credit Card Number">
-            <div class="flex flex-col md:flex-row gap-6 md:gap-3">
-                <input id="expDate" name="expDate" class="w-full text-base md:text-lg pl-5 pr-3 rounded-lg py-2 text-gray-700" type="text" required placeholder="Expiration Date (MM/YY)" maxlength="5" onkeyup="modifyInput(this)">
-                <input id="secCode" name="secCode" class="w-full text-base md:text-lg pl-5 pr-3 rounded-lg py-2 text-gray-700" type="number" required placeholder="Security Code (CVV)" pattern="/^-?\d+\.?\d*$/" onkeypress="if (this.value.length === 4) return false;">
+            <div class="flex justify-start">
+                <a href="/shipping" class="button text-center cursor-pointer bg-blue-500 md:w-48 w-full py-3 px-1 text-white rounded-lg font-bold my-4 hover:bg-blue-700 transition-all">Edit</a>
             </div>
-            <input class="text-center cursor-pointer bg-red-600 md:w-48 w-full py-3 px-1 text-white rounded-lg font-bold my-4 hover:bg-red-800 transition-all" type="submit">
-        </form>
+        </div>
     </article>
 </section>
 
@@ -80,7 +102,10 @@
         formData.append("expDate", document.getElementById("expDate").value);
         formData.append("secCode", document.getElementById("secCode").value);
 
-        validateInputs(formData);
+        if (!validateInputs(formData)) {
+            // display alert
+            return;
+        }
 
         // make request to CheckoutController::processPayment
     });

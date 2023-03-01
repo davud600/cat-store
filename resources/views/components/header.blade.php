@@ -24,16 +24,16 @@
     const scrollResetThreshold = 10;
     let lastScrollTop = 0;
 
-    window.onscroll = function() {
+    window.addEventListener('scroll', () => {
         let st = document.documentElement.scrollTop;
-        if (st > lastScrollTop + scrollShrinkThreshold) {
+
+        if (st > lastScrollTop + scrollShrinkThreshold)
             shrinkNavbar();
-        } else if (st < lastScrollTop - scrollResetThreshold) {
+        else if (st < lastScrollTop - scrollResetThreshold)
             resetNavbar();
-        }
 
         lastScrollTop = st <= 0 ? 0 : st; // For Mobile or negative scrolling
-    };
+    })
 
     function shrinkNavbar() {
         navbarElem.style.paddingTop = "0.25rem";

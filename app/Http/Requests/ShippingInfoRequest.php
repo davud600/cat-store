@@ -29,6 +29,7 @@ class ShippingInfoRequest extends FormRequest
             'city' => 'required|min:3|max:255',
             'province' => 'required|min:3|max:255',
             'zipCode' => 'required|min:1|numeric',
+            'country' => 'required|min:1|max:3',
         ];
     }
 
@@ -55,6 +56,9 @@ class ShippingInfoRequest extends FormRequest
             'zipCode.required' => 'Your Zip Code is required!',
             'zipCode.number' => 'Zip Code must be a number!',
             'zipCode.min' => 'The Zip Code you provided is too short!',
+            'country.required' => 'Your Country is required!',
+            'country.max' => 'Invalid Country Code!',
+            'country.min' => 'Invalid Country Code!',
         ];
     }
 }

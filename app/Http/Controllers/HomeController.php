@@ -14,19 +14,21 @@ class HomeController extends Controller
                 'id' => 0,
                 'name' => 'Tom',
                 'breed' => 'persian',
+                'description' => 'Very Cool Cat!!! He can do tricks too.',
                 'price' => 100,
                 'dob' => new DateTime('19-11-2022')
             ],
             [
                 'id' => 1,
                 'name' => 'Jerry',
-                'breed' => 'brown idk',
+                'breed' => 'cat idk',
+                'description' => 'Very Cool Cat!!! He can do tricks too.',
                 'price' => 200,
                 'dob' => new DateTime('19-11-2021')
             ]
         );
 
-        $this->downloadCatImages();
+        // $this->downloadCatImages();
 
         return view('pages.home', [
             'cats' => $cats
