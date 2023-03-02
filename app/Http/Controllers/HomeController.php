@@ -28,7 +28,7 @@ class HomeController extends Controller
             ]
         );
 
-        // $this->downloadCatImages();
+        $this->downloadCatImages();
 
         return view('pages.home', [
             'cats' => $cats

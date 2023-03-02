@@ -3,6 +3,8 @@
 use App\Http\Controllers\CatController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\HomeController;
+use App\Http\Middleware\CatInfoExists;
+use App\Http\Middleware\ShippingInfoExists;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,9 +23,15 @@ Route::get('/', HomeController::class);
 Route::get('/cat/{id}', [CatController::class, 'cat']);
 
 Route::controller(CheckoutController::class)->group(function () {
-    Route::get('/shipping', 'shipping');
-    Route::get('/checkout', 'checkout');
-    Route::get('/payment-success', 'thankYou');
+    Route::get('/shipping', 'shipping')
+        ->middleware(CatInfoExists::class);
+    Route::get('/checkout', 'checkout')
+        ->middleware(CatInfoExists::class)
+        ->middleware(ShippingInfoExists::class);
+    Route::get('/payment-success', 'thankYou')
+        ->middleware(CatInfoExists::class)
+        ->middleware(ShippingInfoExists::class);
+
     Route::post('/save-shipping-info', 'saveShippingInfo');
     Route::post('/payment', 'processPayment');
 });

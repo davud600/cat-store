@@ -9,17 +9,17 @@ use Illuminate\Http\RedirectResponse;
 
 class CheckoutController extends Controller
 {
-    public function shipping(): View
+    public function shipping()
     {
         return view('pages.shipping');
     }
 
-    public function checkout(): View
+    public function checkout()
     {
         return view('pages.checkout');
     }
 
-    public function thankYou(): View
+    public function thankYou()
     {
         return view('pages.thank-you');
     }
