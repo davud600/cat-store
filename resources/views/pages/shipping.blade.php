@@ -28,9 +28,13 @@
             <div class="flex gap-2">
                 <input id="zipCode" name="zipCode" class="w-full text-base md:text-lg pl-5 pr-3 rounded-lg py-2 text-gray-700" type="number" required placeholder="Postal / Zip Code" value="{{ isset(session()->get('shippingInfo')['zipCode']) ? session()->get('shippingInfo')['zipCode']:'' }}">
                 <select id="country" name="country" class="w-2/3 md:w-1/3 text-base md:text-lg pl-5 pr-3 rounded-lg py-2 text-gray-700">
-                    <option class="text-gray-700" value="" disabled>Country</option>
-                    <option class="text-gray-700" value="aa" {{ isset(session()->get('shippingInfo')['country']) ? (session()->get('shippingInfo')['country'] == "aa" ? "selected":""):"" }}>Albania</option>
-                    <option class="text-gray-700" value="xk" {{ isset(session()->get('shippingInfo')['country']) ? (session()->get('shippingInfo')['country'] == "xk" ? "selected":""):"" }}>Kosovo</option>
+                    <option class="text-gray-700" value="" disabled {{ isset(session()->get('shippingInfo')['country']) ? "":"selected" }}>Country</option>
+                    @php
+                    $countriesList = getAllCountries();
+                    @endphp
+                    @foreach($countriesList as $country)
+                    <option class="text-gray-700" value="{{ $country }}" {{ isset(session()->get('shippingInfo')['country']) ? (session()->get('shippingInfo')['country'] == $country ? "selected":""):"" }}>{{ $country }}</option>
+                    @endforeach
                 </select>
             </div>
             <input class="text-center cursor-pointer bg-red-500 w-full md:w-48 py-3 px-1 text-white rounded-lg font-bold my-4 hover:bg-red-700 transition-all" type="submit">

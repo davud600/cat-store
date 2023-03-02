@@ -29,7 +29,7 @@ class ShippingInfoRequest extends FormRequest
             'city' => 'required|min:3|max:255',
             'province' => 'required|min:3|max:255',
             'zipCode' => 'required|min:1|numeric',
-            'country' => 'required|min:1|max:3',
+            'country' => 'required|min:1|max:100',
         ];
     }
 
