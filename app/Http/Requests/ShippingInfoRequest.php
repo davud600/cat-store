@@ -33,7 +33,7 @@ class ShippingInfoRequest extends FormRequest
         ];
     }
 
-    public function messages()
+    public function messages(): array
     {
         return [
             'fullName.required' => 'Your Full Name is required!',

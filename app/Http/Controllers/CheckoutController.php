@@ -32,10 +32,11 @@ class CheckoutController extends Controller
         return redirect('/checkout');
     }
 
-    public function processPayment(CheckoutPaymentRequest $request)
+    public function processPayment(CheckoutPaymentRequest $request): void
     {
         // save order to db
 
         // clear session data
+        session()->forget(['shippingInfo', 'catInfo']);
     }
 }
