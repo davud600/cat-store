@@ -74,8 +74,8 @@
     <div class="flex px-16 py-10 bg-blue-100 md:h-96 flex-col md:flex-row" style="height: 32rem;">
         <div class="flex flex-col md:w-1/2 w-full gap-6 text-center justify-center">
             <span class="md:text-3xl text-2xl font-semibold">Buy any kind of cat you want</span>
-            <form action="#">
-                <input type="text" placeholder="Search for any cat breed" class="nosubmit border-red-600 bg-transparent border-solid border-2 rounded-2xl py-3 md:py-4 md:w-72 w-52 text-sm md:text-base md:pl-9 pl-7 pr-2 md:pr-3">
+            <form action="/cats" method="get">
+                <input name="searchQuery" id="searchQuery" type="text" placeholder="Search for any cat breed" class="nosubmit border-red-600 bg-transparent border-solid border-2 rounded-2xl py-3 md:py-4 md:w-72 w-52 text-sm md:text-base md:pl-9 pl-7 pr-2 md:pr-3">
             </form>
         </div>
         <div class="flex flex-col gap-10 md:gap-20 mt-12 md:mt-0">
@@ -123,6 +123,10 @@
             </div>
         </a>
         @endforeach
+    </div>
+
+    <div class="flex justify-center mb-6">
+        <a href="/cats" class="button text-center cursor-pointer bg-orange-500 w-full md:w-48 py-3 px-1 text-white rounded-lg font-bold my-6 hover:bg-orange-700 transition-all">View All</a>
     </div>
 </section>
 @endsection

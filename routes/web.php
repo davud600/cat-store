@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', HomeController::class);
 
 Route::get('/cat/{id}', [CatController::class, 'cat']);
+Route::get('/cats', [CatController::class, 'cats']);
 
 Route::controller(CheckoutController::class)->group(function () {
     Route::get('/shipping', 'shipping')
