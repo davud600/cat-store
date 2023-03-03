@@ -16,7 +16,7 @@
 
             <label class="text-lg md:text-xl my-3">Payment info: </label>
             <input id="name" name="name" class="w-full text-base md:text-lg pl-5 pr-3 rounded-lg py-2 text-gray-700" type="text" required placeholder="Name on card">
-            <input id="creditCard" name="creditCard" class="w-full text-base md:text-lg pl-5 pr-3 rounded-lg py-2 text-gray-700" type="text" required placeholder="Credit Card Number">
+            <input id="creditCard" name="creditCard" class="w-full text-base md:text-lg pl-5 pr-3 rounded-lg py-2 text-gray-700" type="text" required placeholder="Credit Card Number (Visa, MasterCard, American Express)">
             <div class="flex flex-col md:flex-row gap-6 md:gap-3">
                 <input id="expDate" name="expDate" class="w-full text-base md:text-lg pl-5 pr-3 rounded-lg py-2 text-gray-700" type="text" required placeholder="Expiration Date (MM/YY)" maxlength="5" onkeyup="modifyInput(this)">
                 <input id="secCode" name="secCode" class="w-full text-base md:text-lg pl-5 pr-3 rounded-lg py-2 text-gray-700" type="number" required placeholder="Security Code (CVV)" pattern="/^-?\d+\.?\d*$/" onkeypress="if (this.value.length === 4) return false;">
@@ -125,19 +125,14 @@
 
     async function paymentRequest(formData) {
         try {
-            const res = await fetch('http://localhost:8000/payment', {
-                headers: {
-                    "Content-Type": "application/json",
-                    'X-CSRF-TOKEN': "{{ csrf_token() }}"
-                },
-                method: "post",
-                body: JSON.stringify(formData)
+            const res = await fetch('http://localhost:8000/api/payment', {
+                method: 'post',
+                body: formData
             });
 
-            console.log(res);
-
             // redirect to thank you page
-            window.location.href = "/payment-success";
+            if (res.status === 200)
+                window.location.href = '/payment-success';
         } catch (error) {
             console.error(error);
         }

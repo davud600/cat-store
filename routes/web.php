@@ -34,5 +34,4 @@ Route::controller(CheckoutController::class)->group(function () {
         ->middleware(ShippingInfoExists::class);
 
     Route::post('/save-shipping-info', 'saveShippingInfo');
-    Route::post('/payment', 'processPayment');
 });

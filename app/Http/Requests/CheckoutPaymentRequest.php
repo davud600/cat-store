@@ -2,7 +2,12 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\CreditCard;
+use App\Rules\ExpirationDate;
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Http\JsonResponse;
 
 class CheckoutPaymentRequest extends FormRequest
 {
@@ -23,22 +28,15 @@ class CheckoutPaymentRequest extends FormRequest
     {
         return [
             'name' => 'required|max:150|min:3',
-            'creditCard' => 'required',
-            'expDate' => 'required',
+            'creditCard' => ['required', 'numeric', new CreditCard],
+            'expDate' => ['required', new ExpirationDate],
             'secCode' => 'required|numeric'
         ];
     }
 
-    public function messages(): array
+    public function failedValidation(Validator $validator)
     {
-        return [
-            'name.required' => 'Card holder name is required!',
-            'name.max' => 'Card holder name is too long!',
-            'name.min' => 'Card holder name is too short!',
-            'creditCard.required' => 'Your Credit Card number is required!',
-            'expDate.required' => 'Expiration date is required!',
-            'secCode.required' => 'Security Code is required!',
-            'secCode.numeric' => 'Security Code must be a number!',
-        ];
+        $response = new JsonResponse(['errors' => $validator->errors()], 400);
+        throw new HttpResponseException($response);
     }
 }
