@@ -27,7 +27,10 @@
             <div class="flex flex-col gap-1">
                 <span class="text-lg">{{ $cat['name'] }}</span>
                 <span class="text-md text-red-600 font-bold">{{ $cat['price'] }}€</span>
-                <span class="text-sm text-gray-500">{{ $cat['dob']->diff(new DateTime())->format('%y years %m months %d days') }} old</span>
+                @php
+                $catDob = new DateTime($cat['dob']);
+                @endphp
+                <span class="text-sm text-gray-500">{{ $catDob->diff(new DateTime())->format('%y years %m months %d days') }} old</span>
             </div>
         </a>
         @endforeach

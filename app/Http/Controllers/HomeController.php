@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cat;
 use DateTime;
 use Illuminate\Contracts\View\View;
 
@@ -9,26 +10,9 @@ class HomeController extends Controller
 {
     public function __invoke(): View
     {
-        $cats = array(
-            [
-                'id' => 0,
-                'name' => 'Tom',
-                'breed' => 'persian',
-                'description' => 'Very Cool Cat!!! He can do tricks too.',
-                'price' => 100,
-                'dob' => new DateTime('19-11-2022')
-            ],
-            [
-                'id' => 1,
-                'name' => 'Jerry',
-                'breed' => 'cat idk',
-                'description' => 'Very Cool Cat!!! He can do tricks too.',
-                'price' => 200,
-                'dob' => new DateTime('19-11-2021')
-            ]
-        );
+        $cats = Cat::limit(8)->get();
 
-        // $this->downloadCatImages();
+        $this->downloadCatImages();
 
         return view('pages.home', [
             'cats' => $cats

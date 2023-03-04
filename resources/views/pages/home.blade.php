@@ -48,7 +48,7 @@
     <div class="bg-gray-100 p-2">
         <!-- Section title container -->
         <div class="w-full flex justify-center my-4 md:my-10 md:px-16 px-6 text-center">
-            <h1 class="md:text-3xl text-xl font-semibold">There are many reasons why you should get a cat: </h1>
+            <h1 class="md:text-3xl text-2xl font-semibold">There are many reasons why you should get a cat: </h1>
         </div>
 
         <!-- Slideshow container -->
@@ -127,7 +127,10 @@
             <div class="flex flex-col gap-1">
                 <span class="text-lg">{{ $cat['name'] }}</span>
                 <span class="text-md text-red-600 font-bold">{{ $cat['price'] }}€</span>
-                <span class="text-sm text-gray-500">{{ $cat['dob']->diff(new DateTime())->format('%y years %m months %d days') }} old</span>
+                @php
+                $catDob = new DateTime($cat['dob']);
+                @endphp
+                <span class="text-sm text-gray-500">{{ $catDob->diff(new DateTime())->format('%y years %m months %d days') }} old</span>
             </div>
         </a>
         @endforeach

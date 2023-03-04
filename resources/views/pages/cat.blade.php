@@ -19,7 +19,10 @@
             <div class="flex flex-col gap-4">
                 <h1 class="text-4xl font-semibold">{{ $cat['name'] }}</h1>
                 <h2 class="text-4xl font-semibold text-red-600">{{ $cat['price'] }}€</h2>
-                <span class="text-base text-blue-400 my-5">{{ $cat['dob']->diff(new DateTime())->format('%y years %m months %d days') }} old</span>
+                @php
+                $catDob = new DateTime($cat['dob']);
+                @endphp
+                <span class="text-base text-blue-400 my-5">{{ $catDob->diff(new DateTime())->format('%y years %m months %d days') }} old</span>
             </div>
             <div class="flex flex-col gap-2">
                 <h3 class="text-xl font-semibold">Description:</h3>
