@@ -126,7 +126,7 @@
     // Make request to CheckoutController::processPayment
     async function paymentRequest(formData) {
         try {
-            const res = await fetch('http://localhost:8000/payment', {
+            const res = await fetch(`${"{{ url('/') }}"}/payment`, {
                 headers: {
                     'x-csrf-token': '{{ csrf_token() }}'
                 },
