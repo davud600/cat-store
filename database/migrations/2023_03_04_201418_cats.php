@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('description');
             $table->string('price');
             $table->date('dob');
+            $table->boolean('sold')->default(false);
             $table->timestamps();
             $table->softDeletes();
         });

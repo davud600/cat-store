@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CheckoutPaymentRequest;
 use App\Http\Requests\ShippingInfoRequest;
+use App\Models\Cat;
 use App\Models\Order;
 use App\Models\ShippingAddress;
 use Illuminate\Contracts\View\View;
@@ -44,6 +45,7 @@ class CheckoutController extends Controller
             // save order and shipping address to db
             $shippingAddress = ShippingAddress::create(session()->get('shippingInfo'));
             Order::create(array('shipping_address_id' => $shippingAddress->id, ...$request->all()));
+            Cat::where('id', session()->get('catInfo')['id'])->update(array('sold' => true));
 
             // return json response
             return new JsonResponse(['message' => 'Your order has been received!'], 200);
