@@ -36,6 +36,7 @@ class CheckoutPaymentRequest extends FormRequest
 
     public function failedValidation(Validator $validator)
     {
+        // !! SHOULD RETURN CHECKOUT PAGE WITH FLASH SESSION ERRORS INSTEAD
         $response = new JsonResponse(['errors' => $validator->errors()], 400);
         throw new HttpResponseException($response);
     }

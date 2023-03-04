@@ -37,14 +37,12 @@ class CheckoutController extends Controller
     {
         try {
             // return response
-            if ($request->validated()) {
-                // save order to db
+            // save order to db
 
-                // clear session data
-                session()->forget(['shippingInfo', 'catInfo']);
+            // clear session data
+            session()->forget(['shippingInfo', 'catInfo']);
 
-                return new JsonResponse(['message' => 'validation was successful!'], 200);
-            }
+            return new JsonResponse(['message' => 'validation was successful!'], 200);
         } catch (\Exception $e) {
             error_log('An exception occurred: ' . $e->getMessage());
         }
