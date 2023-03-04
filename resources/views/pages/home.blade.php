@@ -44,30 +44,31 @@
 @endsection
 
 @section('content')
-<section id="hero-section">
-    <!-- Section title container -->
-    <div class="w-full flex justify-center my-4 md:my-10 md:px-16 px-6 text-center">
-        <h1 class="md:text-3xl text-xl font-semibold">There are many reasons why you should get a cat: </h1>
-    </div>
+<section id="hero-section" class="md:px-16 px-6">
+    <div class="bg-gray-100 p-2">
+        <!-- Section title container -->
+        <div class="w-full flex justify-center my-4 md:my-10 md:px-16 px-6 text-center">
+            <h1 class="md:text-3xl text-xl font-semibold">There are many reasons why you should get a cat: </h1>
+        </div>
 
-    <!-- Slideshow container -->
-    <div id="slideshow-container" class="min-w-fit m-auto relative">
+        <!-- Slideshow container -->
+        <div id="slideshow-container" class="min-w-fit m-auto relative">
 
-        @for ($i = 0; $i < env('TOTAL_HOMEPAGE_CATS'); $i++) <div class="slide-item {{ $i > 0 ? 'hidden':'' }}">
-            <img src="hero-cat-images/cat{{ $i }}.jpg" alt="image of cat :)" class="w-full object-contain" style="height: 485px;">
-    </div>
-    @endfor
+            @for ($i = 0; $i < env('TOTAL_HOMEPAGE_CATS'); $i++) <div class="slide-item {{ $i > 0 ? 'hidden':'' }}">
+                <img src="hero-cat-images/cat{{ $i }}.jpg" alt="image of cat :)" class="w-full object-contain" style="height: 485px;">
+        </div>
+        @endfor
 
-    <!-- Next and previous buttons -->
-    <a class="prev cursor-pointer absolute left-0 top-1/2 w-auto -mt-14 p-8 text-blue-300 font-bold text-4xl transition-all hover:text-blue-500" onclick="plusSlides(-1)">&#10094;</a>
-    <a class="next cursor-pointer absolute right-0 top-1/2 w-auto -mt-14 p-8 text-blue-300 font-bold text-4xl transition-all hover:text-blue-500" onclick="plusSlides(1)">&#10095;</a>
-    </div>
+        <!-- Next and previous buttons -->
+        <a class="prev cursor-pointer absolute left-0 top-1/2 w-auto -mt-14 p-8 text-blue-300 font-bold text-4xl transition-all hover:text-blue-500" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next cursor-pointer absolute right-0 top-1/2 w-auto -mt-14 p-8 text-blue-300 font-bold text-4xl transition-all hover:text-blue-500" onclick="plusSlides(1)">&#10095;</a>
 
-    <!-- The dots/circles -->
-    <div style="text-align:center">
-        <span class="dot cursor-pointer h-3 w-3 mx-0 my-2 bg-gray-200 rounded-full inline-block transition-all" onclick="currentSlide(1)"></span>
-        <span class="dot cursor-pointer h-3 w-3 mx-0 my-2 bg-gray-200 rounded-full inline-block transition-all" onclick="currentSlide(2)"></span>
-        <span class="dot cursor-pointer h-3 w-3 mx-0 my-2 bg-gray-200 rounded-full inline-block transition-all" onclick="currentSlide(3)"></span>
+        <!-- The dots/circles -->
+        <div style="text-align:center">
+            <span class="dot cursor-pointer h-3 w-3 mx-0 my-2 bg-gray-200 rounded-full inline-block transition-all" onclick="currentSlide(1)"></span>
+            <span class="dot cursor-pointer h-3 w-3 mx-0 my-2 bg-gray-200 rounded-full inline-block transition-all" onclick="currentSlide(2)"></span>
+            <span class="dot cursor-pointer h-3 w-3 mx-0 my-2 bg-gray-200 rounded-full inline-block transition-all" onclick="currentSlide(3)"></span>
+        </div>
     </div>
 </section>
 <section id="buy-section" class="md:px-16 px-6">
