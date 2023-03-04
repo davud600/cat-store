@@ -15,11 +15,11 @@
             {{ csrf_field() }}
 
             <label class="text-lg md:text-xl my-3">Payment info: </label>
-            <input id="name" name="name" class="w-full text-base md:text-lg pl-5 pr-3 rounded-lg py-2 text-gray-700" type="text" required placeholder="Name on card">
-            <input id="creditCard" name="creditCard" class="w-full text-base md:text-lg pl-5 pr-3 rounded-lg py-2 text-gray-700" type="text" required placeholder="Credit Card Number (Visa, MasterCard, American Express)">
+            <input id="card_holder_name" name="card_holder_name" class="w-full text-base md:text-lg pl-5 pr-3 rounded-lg py-2 text-gray-700" type="text" required placeholder="Name on card">
+            <input id="card_number" name="card_number" class="w-full text-base md:text-lg pl-5 pr-3 rounded-lg py-2 text-gray-700" type="text" required placeholder="Credit Card Number (Visa, MasterCard, American Express)">
             <div class="flex flex-col md:flex-row gap-6 md:gap-3">
-                <input id="expDate" name="expDate" class="w-full text-base md:text-lg pl-5 pr-3 rounded-lg py-2 text-gray-700" type="text" required placeholder="Expiration Date (MM/YY)" maxlength="5" onkeyup="modifyInput(this)">
-                <input id="secCode" name="secCode" class="w-full text-base md:text-lg pl-5 pr-3 rounded-lg py-2 text-gray-700" type="number" required placeholder="Security Code (CVV)" pattern="/^-?\d+\.?\d*$/" onkeypress="if (this.value.length === 4) return false;">
+                <input id="card_exp_date" name="card_exp_date" class="w-full text-base md:text-lg pl-5 pr-3 rounded-lg py-2 text-gray-700" type="text" required placeholder="Expiration Date (MM/YY)" maxlength="5" onkeyup="modifyInput(this)">
+                <input id="card_sec_code" name="card_sec_code" class="w-full text-base md:text-lg pl-5 pr-3 rounded-lg py-2 text-gray-700" type="number" required placeholder="Security Code (CVV)" pattern="/^-?\d+\.?\d*$/" onkeypress="if (this.value.length === 4) return false;">
             </div>
             <input class="text-center cursor-pointer bg-red-500 md:w-48 w-full py-3 px-1 text-white rounded-lg font-bold my-4 hover:bg-red-700 transition-all" type="submit">
         </form>
@@ -58,13 +58,13 @@
                     <span class="text-gray-600 font-medium text-base md:text-lg">Country</span>
                 </div>
                 <div class="flex flex-col gap-2 text-end w-1/2">
-                    <span class="text-gray-600 text-base md:text-lg">{{ session()->get('shippingInfo')['fullName'] }}&nbsp;</span>
+                    <span class="text-gray-600 text-base md:text-lg">{{ session()->get('shippingInfo')['full_name'] }}&nbsp;</span>
                     <span class="text-gray-600 text-base md:text-lg">{{ session()->get('shippingInfo')['email'] }}&nbsp;</span>
                     <span class="text-gray-600 text-base md:text-lg">{{ session()->get('shippingInfo')['address'] }}&nbsp;</span>
                     <span class="text-gray-600 text-base md:text-lg">{{ session()->get('shippingInfo')['address2'] }}&nbsp;</span>
                     <span class="text-gray-600 text-base md:text-lg">{{ session()->get('shippingInfo')['city'] }}&nbsp;</span>
                     <span class="text-gray-600 text-base md:text-lg">{{ session()->get('shippingInfo')['province'] }}&nbsp;</span>
-                    <span class="text-gray-600 text-base md:text-lg">{{ session()->get('shippingInfo')['zipCode'] }}&nbsp;</span>
+                    <span class="text-gray-600 text-base md:text-lg">{{ session()->get('shippingInfo')['zip_code'] }}&nbsp;</span>
                     <span class="text-gray-600 text-base md:text-lg">{{ session()->get('shippingInfo')['country'] }}&nbsp;</span>
                 </div>
             </div>
@@ -98,14 +98,14 @@
         e.preventDefault();
 
         const formData = new FormData();
-        formData.append("name", document.getElementById("name").value);
-        formData.append("creditCard", document.getElementById("creditCard").value);
-        formData.append("expDate", document.getElementById("expDate").value);
-        formData.append("secCode", document.getElementById("secCode").value);
+        formData.append("card_holder_name", document.getElementById("card_holder_name").value);
+        formData.append("card_number", document.getElementById("card_number").value);
+        formData.append("card_exp_date", document.getElementById("card_exp_date").value);
+        formData.append("card_sec_code", document.getElementById("card_sec_code").value);
 
         if (!validateInputs(formData)) {
             // display alert
-            // !! TEMPORARY SOLUTION, MUST USE alert.blade.php component !!
+            // !! TEMPORARY SOLUTION, SHOULD USE alert.blade.php component !!
             const portalElem = document.getElementById('portal');
             const alertElem = document.createElement('div');
             alertElem.innerHTML = `<div id="error-alert" class="rounded-lg drop-shadow-xl md:w-96 w-72 text-center top-36 left-0 right-0 h-20 ml-auto mr-auto bg-red-50 md:px-5 md:py-4 py-3 px-4 fixed z-50">
@@ -119,13 +119,17 @@
             return;
         }
 
-        // make request to CheckoutController::processPayment
         paymentRequest(formData);
     });
 
+
+    // Make request to CheckoutController::processPayment
     async function paymentRequest(formData) {
         try {
-            const res = await fetch('http://localhost:8000/api/payment', {
+            const res = await fetch('http://localhost:8000/payment', {
+                headers: {
+                    'x-csrf-token': '{{ csrf_token() }}'
+                },
                 method: 'post',
                 body: formData
             });
@@ -139,13 +143,13 @@
     }
 
     function validateInputs(formData) {
-        const cardProcessor = getCardProcessor(formData.get('creditCard'));
+        const cardProcessor = getCardProcessor(formData.get('card_number'));
 
         if (!cardProcessor) return false;
 
-        if (!validateExpDate(formData.get('expDate'))) return false;
+        if (!validateExpDate(formData.get('card_exp_date'))) return false;
 
-        if (!validateCvv(cardProcessor, formData.get('secCode'))) return false;
+        if (!validateCvv(cardProcessor, formData.get('card_sec_code'))) return false;
 
         return true;
     }

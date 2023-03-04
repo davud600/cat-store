@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CheckoutPaymentRequest;
 use App\Http\Requests\ShippingInfoRequest;
+use App\Models\Order;
+use App\Models\ShippingAddress;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -22,6 +24,9 @@ class CheckoutController extends Controller
 
     public function thankYou(): View
     {
+        // clear session data
+        session()->forget(['shippingInfo', 'catInfo']);
+
         return view('pages.thank-you');
     }
 
@@ -36,13 +41,12 @@ class CheckoutController extends Controller
     public function processPayment(CheckoutPaymentRequest $request): JsonResponse
     {
         try {
-            // return response
-            // save order to db
+            // save order and shipping address to db
+            $shippingAddress = ShippingAddress::create(session()->get('shippingInfo'));
+            Order::create(array('shipping_address_id' => $shippingAddress->id, ...$request->all()));
 
-            // clear session data
-            session()->forget(['shippingInfo', 'catInfo']);
-
-            return new JsonResponse(['message' => 'validation was successful!'], 200);
+            // return json response
+            return new JsonResponse(['message' => 'Your order has been received!'], 200);
         } catch (\Exception $e) {
             error_log('An exception occurred: ' . $e->getMessage());
         }

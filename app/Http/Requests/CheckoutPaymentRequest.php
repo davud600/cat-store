@@ -27,10 +27,10 @@ class CheckoutPaymentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|max:150|min:3',
-            'creditCard' => ['required', 'numeric', new CreditCard],
-            'expDate' => ['required', new ExpirationDate],
-            'secCode' => 'required|numeric'
+            'card_holder_name' => 'required|max:150|min:3',
+            'card_number' => ['required', 'numeric', new CreditCard],
+            'card_exp_date' => ['required', new ExpirationDate],
+            'card_sec_code' => 'required|numeric'
         ];
     }
 

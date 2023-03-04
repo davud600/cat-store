@@ -18,7 +18,3 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-
-Route::controller(CheckoutController::class)->group(function () {
-    Route::post('/payment', 'processPayment');
-});

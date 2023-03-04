@@ -16,7 +16,7 @@
 
             <label class="text-lg md:text-xl my-3">Customer details: </label>
             <div class="flex flex-col md:flex-row gap-4">
-                <input id="fullName" name="fullName" class="w-full text-base md:text-lg pl-5 pr-3 rounded-lg py-2 text-gray-700" type="text" required placeholder="Full Name" value="{{ isset(session()->get('shippingInfo')['fullName']) ? session()->get('shippingInfo')['fullName']:'' }}">
+                <input id="full_name" name="full_name" class="w-full text-base md:text-lg pl-5 pr-3 rounded-lg py-2 text-gray-700" type="text" required placeholder="Full Name" value="{{ isset(session()->get('shippingInfo')['full_name']) ? session()->get('shippingInfo')['full_name']:'' }}">
                 <input id="email" name="email" class="w-full text-base md:text-lg pl-5 pr-3 rounded-lg py-2 text-gray-700" type="email" required placeholder="E-mail" value="{{ isset(session()->get('shippingInfo')['email']) ? session()->get('shippingInfo')['email']:'' }}">
             </div>
             <input id="address" name="address" class="w-full text-base md:text-lg pl-5 pr-3 rounded-lg py-2 text-gray-700" type="text" required placeholder="Street Address" value="{{ isset(session()->get('shippingInfo')['address']) ? session()->get('shippingInfo')['address']:'' }}">
@@ -26,7 +26,7 @@
                 <input id="province" name="province" class="w-full text-base md:text-lg pl-5 pr-3 rounded-lg py-2 text-gray-700" type="text" required placeholder="State / Province" value="{{ isset(session()->get('shippingInfo')['province']) ? session()->get('shippingInfo')['province']:'' }}">
             </div>
             <div class="flex gap-2">
-                <input id="zipCode" name="zipCode" class="w-full text-base md:text-lg pl-5 pr-3 rounded-lg py-2 text-gray-700" type="number" required placeholder="Postal / Zip Code" value="{{ isset(session()->get('shippingInfo')['zipCode']) ? session()->get('shippingInfo')['zipCode']:'' }}">
+                <input id="zip_code" name="zip_code" class="w-full text-base md:text-lg pl-5 pr-3 rounded-lg py-2 text-gray-700" type="number" required placeholder="Postal / Zip Code" value="{{ isset(session()->get('shippingInfo')['zip_code']) ? session()->get('shippingInfo')['zip_code']:'' }}">
                 <select id="country" name="country" class="w-2/3 md:w-1/3 text-base md:text-lg pl-5 pr-3 rounded-lg py-2 text-gray-700">
                     <option class="text-gray-700" value="" disabled {{ isset(session()->get('shippingInfo')['country']) ? "":"selected" }}>Country</option>
                     @php
