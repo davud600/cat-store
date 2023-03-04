@@ -18,7 +18,7 @@ class CatSeeder extends Seeder
             DB::table('cats')->insert([
                 'name' => Str::random(10),
                 'breed' => Str::random(10),
-                'description' => Str::random(75),
+                'description' => 'Very good cat, it can do tricks too.',
                 'price' => 150 + $i,
                 'dob' => new DateTime('19-11-2022'),
             ]);

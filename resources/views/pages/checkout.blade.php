@@ -24,6 +24,10 @@
             <input class="text-center cursor-pointer bg-red-500 md:w-48 w-full py-3 px-1 text-white rounded-lg font-bold my-4 hover:bg-red-700 transition-all" type="submit">
         </form>
 
+        @php
+        $catDob = new DateTime(session()->get('catInfo')['dob']);
+        @endphp
+
         <div class="w-5/6 md:w-2/3">
             <span class="text-lg md:text-xl my-3">Purchase info: </span>
             <div class="my-4 w-full flex justify-between">
@@ -31,13 +35,13 @@
                 <div class="absolute flex flex-col gap-2 text-start w-1/2">
                     <span class="text-gray-600 font-medium text-base md:text-lg">Name:</span>
                     <span class="text-gray-600 font-medium text-base md:text-lg">Price:</span>
-                    <span class="text-gray-600 font-medium text-base md:text-lg">Age</span>
-                    <span class="text-gray-600 font-medium text-base md:text-lg">Description</span>
+                    <span class="text-gray-600 font-medium text-base md:text-lg">Age:</span>
+                    <span class="text-gray-600 font-medium text-base md:text-lg">Description:</span>
                 </div>
                 <div class="flex flex-col gap-2 text-end w-1/2">
                     <span class="text-gray-600 text-base md:text-lg">{{ session()->get('catInfo')['name'] }}&nbsp;</span>
                     <span class="text-gray-600 text-base md:text-lg">{{ session()->get('catInfo')['price'] }}€&nbsp;</span>
-                    <span class="text-gray-600 text-base md:text-lg">{{ session()->get('catInfo')['dob']->diff(new DateTime())->format('%y years %m months %d days') }} old&nbsp;</span>
+                    <span class="text-gray-600 text-base md:text-lg">{{ $catDob->diff(new DateTime())->format('%y years %m months %d days') }} old&nbsp;</span>
                     <span class="text-gray-600 text-base md:text-lg">{{ session()->get('catInfo')['description'] }}&nbsp;</span>
                 </div>
             </div>
