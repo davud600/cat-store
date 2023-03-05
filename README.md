@@ -31,3 +31,15 @@
     
 - Thank You Page:
     - After payment is validated the user is redirected here to show their purchase was made.
+
+## Run Locally
+
+1. Download the repo.
+2. Rename .env.example to .env or run "mv .env.example .env".
+3. Run "composer install" to install all the dependencies (composer should be installed on local machine).
+4. Run "php artisan key:generate" to generate app key.
+5. Run "php artisan migrate" to migrate tables to database (if db schema doesn't exist it should prompt to create it on the console, if not create the db schema as named on the .env.example).
+6. Run "php artisan db:seed" to seed all the dummy data in the db.
+7. Then to bundle all the assets run "npm run dev".
+8. Finally run "php artisan serve" to start the server.
+9. Site should be open on https://localhost:8000
