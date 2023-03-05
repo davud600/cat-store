@@ -8,6 +8,7 @@
 - Uses MySQL database (migrations and seeders are included).
 - Frontend uses tailwind (for css classes), blade from Laravel and finally vite as a bundler.
 - Frontend of the app is responsive for mobile devices.
+- You can search through all cats and filter your results.
 
 ## App Flow
 
