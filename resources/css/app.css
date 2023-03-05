@@ -20,6 +20,11 @@ a.button {
     text-decoration: none;
 }
 
+#btn-back-to-top {
+    position: fixed;
+    display: none;
+}
+
 .fade-animation {
     animation: fadeIn 200ms ease-out;
 }
