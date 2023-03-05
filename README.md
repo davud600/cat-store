@@ -42,4 +42,4 @@
 6. Run "php artisan db:seed" to seed all the dummy data in the db.
 7. Then to bundle all the assets run "npm run dev".
 8. Finally run "php artisan serve" to start the server.
-9. Site should be open on https://localhost:8000
+9. Site should be open on http://localhost:8000
