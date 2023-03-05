@@ -42,7 +42,10 @@ class CheckoutController extends Controller
     public function processPayment(CheckoutPaymentRequest $request): JsonResponse
     {
         try {
-            // save order and shipping address to db
+            // save order and shipping address to db if cat not sold already
+            if (Cat::where('id', session()->get('catInfo')['id'])->first()['sold'])
+                return new JsonResponse(['message' => 'Cat is not available!'], 400);
+
             $shippingAddress = ShippingAddress::create(session()->get('shippingInfo'));
             Order::create(array('shipping_address_id' => $shippingAddress->id, ...$request->all()));
             Cat::where('id', session()->get('catInfo')['id'])->update(array('sold' => true));

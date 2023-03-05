@@ -30,7 +30,7 @@
         @endif
     </div>
 
-    <main class="overflow-x-hidden">
+    <main class="overflow-x-hidden bg-neutral-900">
         @yield('content')
     </main>
 

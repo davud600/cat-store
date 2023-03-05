@@ -5,23 +5,23 @@
 @endsection
 
 @section('content')
-<a class="button ml-5 mt-5 md:ml-14 md:mt-14 px-6 py-2 md:text-xl text-lg rounded-lg hover:bg-blue-400 transition-all text-white bg-blue-300" href="/shipping">Back</a>
+<a class="button ml-5 mt-5 md:ml-14 md:mt-14 px-6 py-2 md:text-xl text-lg rounded-lg hover:bg-blue-900 transition-all text-white bg-blue-800" href="/shipping">Back</a>
 
 <section id="checkout-section" class="px-4 md:px-14 py-12">
-    <article class="flex flex-col items-center text-center gap-4 bg-gray-200 px-4 md:px-6 py-8 rounded-lg">
-        <h1 class="text-2xl md:text-3xl font-semibold my-4">Checkout</h1>
+    <article class="flex flex-col items-center text-center gap-4 bg-neutral-800 px-4 md:px-6 py-8 rounded-lg">
+        <h1 class="text-2xl md:text-3xl font-bold my-4 text-white">Checkout</h1>
 
         <form id="checkoutForm" class="w-5/6 md:w-2/3 my-4 flex flex-col gap-6">
             {{ csrf_field() }}
 
-            <label class="text-lg md:text-xl my-3">Payment info: </label>
-            <input id="card_holder_name" name="card_holder_name" class="w-full text-base md:text-lg pl-5 pr-3 rounded-lg py-2 text-gray-700" type="text" required placeholder="Name on card">
-            <input id="card_number" name="card_number" class="w-full text-base md:text-lg pl-5 pr-3 rounded-lg py-2 text-gray-700" type="text" required placeholder="Credit Card Number (Visa, MasterCard, American Express)">
+            <label class="text-lg md:text-xl my-3 text-neutral-300 font-semibold">Payment info: </label>
+            <input id="card_holder_name" name="card_holder_name" class="w-full text-base md:text-lg pl-5 pr-3 rounded-lg py-3 text-white bg-neutral-600" type="text" required placeholder="Name on card">
+            <input id="card_number" name="card_number" class="w-full text-base md:text-lg pl-5 pr-3 rounded-lg py-3 text-white bg-neutral-600" type="text" required placeholder="Credit Card Number (Visa, MasterCard, American Express)">
             <div class="flex flex-col md:flex-row gap-6 md:gap-3">
-                <input id="card_exp_date" name="card_exp_date" class="w-full text-base md:text-lg pl-5 pr-3 rounded-lg py-2 text-gray-700" type="text" required placeholder="Expiration Date (MM/YY)" maxlength="5" onkeyup="modifyInput(this)">
-                <input id="card_sec_code" name="card_sec_code" class="w-full text-base md:text-lg pl-5 pr-3 rounded-lg py-2 text-gray-700" type="number" required placeholder="Security Code (CVV)" pattern="/^-?\d+\.?\d*$/" onkeypress="if (this.value.length === 4) return false;">
+                <input id="card_exp_date" name="card_exp_date" class="w-full text-base md:text-lg pl-5 pr-3 rounded-lg py-3 text-white bg-neutral-600" type="text" required placeholder="Expiration Date (MM/YY)" maxlength="5" onkeyup="modifyInput(this)">
+                <input id="card_sec_code" name="card_sec_code" class="w-full text-base md:text-lg pl-5 pr-3 rounded-lg py-3 text-white bg-neutral-600" type="number" required placeholder="Security Code (CVV)" pattern="/^-?\d+\.?\d*$/" onkeypress="if (this.value.length === 4) return false;">
             </div>
-            <input class="text-center cursor-pointer bg-red-500 md:w-48 w-full py-3 px-1 text-white rounded-lg font-bold my-4 hover:bg-red-700 transition-all" type="submit">
+            <input class="text-center cursor-pointer bg-red-600 md:w-48 w-full py-3 px-1 text-white rounded-lg font-bold my-4 hover:bg-red-700 transition-all" type="submit">
         </form>
 
         @php
@@ -29,51 +29,51 @@
         @endphp
 
         <div class="w-5/6 md:w-2/3">
-            <span class="text-lg md:text-xl my-3">Purchase info: </span>
+            <span class="text-lg md:text-xl my-3 text-neutral-300 font-semibold">Purchase info: </span>
             <div class="my-4 w-full flex justify-between">
                 <div></div>
                 <div class="absolute flex flex-col gap-2 text-start w-1/2">
-                    <span class="text-gray-600 font-medium text-base md:text-lg">Name:</span>
-                    <span class="text-gray-600 font-medium text-base md:text-lg">Price:</span>
-                    <span class="text-gray-600 font-medium text-base md:text-lg">Age:</span>
-                    <span class="text-gray-600 font-medium text-base md:text-lg">Description:</span>
+                    <span class="text-neutral-400 font-medium text-base md:text-lg">Name:</span>
+                    <span class="text-neutral-400 font-medium text-base md:text-lg">Price:</span>
+                    <span class="text-neutral-400 font-medium text-base md:text-lg">Age:</span>
+                    <span class="text-neutral-400 font-medium text-base md:text-lg">Description:</span>
                 </div>
                 <div class="flex flex-col gap-2 text-end w-1/2">
-                    <span class="text-gray-600 text-base md:text-lg">{{ session()->get('catInfo')['name'] }}&nbsp;</span>
-                    <span class="text-gray-600 text-base md:text-lg">{{ session()->get('catInfo')['price'] }}€&nbsp;</span>
-                    <span class="text-gray-600 text-base md:text-lg">{{ $catDob->diff(new DateTime())->format('%y years %m months %d days') }} old&nbsp;</span>
-                    <span class="text-gray-600 text-base md:text-lg">{{ session()->get('catInfo')['description'] }}&nbsp;</span>
+                    <span class="text-neutral-400 text-base md:text-lg">{{ session()->get('catInfo')['name'] }}&nbsp;</span>
+                    <span class="text-neutral-400 text-base md:text-lg">{{ session()->get('catInfo')['price'] }}€&nbsp;</span>
+                    <span class="text-neutral-400 text-base md:text-lg">{{ $catDob->diff(new DateTime())->format('%y years %m months %d days') }} old&nbsp;</span>
+                    <span class="text-neutral-400 text-base md:text-lg">{{ session()->get('catInfo')['description'] }}&nbsp;</span>
                 </div>
             </div>
         </div>
 
         <div class="w-5/6 md:w-2/3">
-            <span class="text-lg md:text-xl my-3">Shipping info: </span>
+            <span class="text-lg md:text-xl my-3 text-neutral-300 font-semibold">Shipping info: </span>
             <div class="my-4 w-full flex justify-between">
                 <div></div>
                 <div class="absolute flex flex-col gap-2 text-start w-1/2">
-                    <span class="text-gray-600 font-medium text-base md:text-lg">Full Name:</span>
-                    <span class="text-gray-600 font-medium text-base md:text-lg">E-Mail:</span>
-                    <span class="text-gray-600 font-medium text-base md:text-lg">Address</span>
-                    <span class="text-gray-600 font-medium text-base md:text-lg">2nd Address</span>
-                    <span class="text-gray-600 font-medium text-base md:text-lg">City</span>
-                    <span class="text-gray-600 font-medium text-base md:text-lg">Province</span>
-                    <span class="text-gray-600 font-medium text-base md:text-lg">Zip Code</span>
-                    <span class="text-gray-600 font-medium text-base md:text-lg">Country</span>
+                    <span class="text-neutral-400 font-medium text-base md:text-lg">Full Name:</span>
+                    <span class="text-neutral-400 font-medium text-base md:text-lg">E-Mail:</span>
+                    <span class="text-neutral-400 font-medium text-base md:text-lg">Address</span>
+                    <span class="text-neutral-400 font-medium text-base md:text-lg">2nd Address</span>
+                    <span class="text-neutral-400 font-medium text-base md:text-lg">City</span>
+                    <span class="text-neutral-400 font-medium text-base md:text-lg">Province</span>
+                    <span class="text-neutral-400 font-medium text-base md:text-lg">Zip Code</span>
+                    <span class="text-neutral-400 font-medium text-base md:text-lg">Country</span>
                 </div>
                 <div class="flex flex-col gap-2 text-end w-1/2">
-                    <span class="text-gray-600 text-base md:text-lg">{{ session()->get('shippingInfo')['full_name'] }}&nbsp;</span>
-                    <span class="text-gray-600 text-base md:text-lg">{{ session()->get('shippingInfo')['email'] }}&nbsp;</span>
-                    <span class="text-gray-600 text-base md:text-lg">{{ session()->get('shippingInfo')['address'] }}&nbsp;</span>
-                    <span class="text-gray-600 text-base md:text-lg">{{ session()->get('shippingInfo')['address2'] }}&nbsp;</span>
-                    <span class="text-gray-600 text-base md:text-lg">{{ session()->get('shippingInfo')['city'] }}&nbsp;</span>
-                    <span class="text-gray-600 text-base md:text-lg">{{ session()->get('shippingInfo')['province'] }}&nbsp;</span>
-                    <span class="text-gray-600 text-base md:text-lg">{{ session()->get('shippingInfo')['zip_code'] }}&nbsp;</span>
-                    <span class="text-gray-600 text-base md:text-lg">{{ session()->get('shippingInfo')['country'] }}&nbsp;</span>
+                    <span class="text-neutral-400 text-base md:text-lg">{{ session()->get('shippingInfo')['full_name'] }}&nbsp;</span>
+                    <span class="text-neutral-400 text-base md:text-lg">{{ session()->get('shippingInfo')['email'] }}&nbsp;</span>
+                    <span class="text-neutral-400 text-base md:text-lg">{{ session()->get('shippingInfo')['address'] }}&nbsp;</span>
+                    <span class="text-neutral-400 text-base md:text-lg">{{ session()->get('shippingInfo')['address2'] }}&nbsp;</span>
+                    <span class="text-neutral-400 text-base md:text-lg">{{ session()->get('shippingInfo')['city'] }}&nbsp;</span>
+                    <span class="text-neutral-400 text-base md:text-lg">{{ session()->get('shippingInfo')['province'] }}&nbsp;</span>
+                    <span class="text-neutral-400 text-base md:text-lg">{{ session()->get('shippingInfo')['zip_code'] }}&nbsp;</span>
+                    <span class="text-neutral-400 text-base md:text-lg">{{ session()->get('shippingInfo')['country'] }}&nbsp;</span>
                 </div>
             </div>
             <div class="flex justify-start">
-                <a href="/shipping" class="button text-center cursor-pointer bg-blue-500 md:w-48 w-full py-3 px-1 text-white rounded-lg font-bold my-4 hover:bg-blue-700 transition-all">Edit</a>
+                <a href="/shipping" class="button text-center cursor-pointer bg-blue-700 md:w-48 w-full py-3 px-1 text-white rounded-lg font-bold my-4 hover:bg-blue-800 transition-all">Edit</a>
             </div>
         </div>
     </article>

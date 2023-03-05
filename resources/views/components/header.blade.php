@@ -1,5 +1,5 @@
 <header class="sticky top-0 z-20">
-    <nav id="navbar" class="flex justify-between md:px-32 px-4 py-4 shadow-md items-center from-white to-pink-100 bg-gradient-to-t via-white transition-all duration-300">
+    <nav id="navbar" class="flex justify-between md:px-32 px-4 py-4 shadow-md items-center bg-neutral-800 transition-all duration-300">
         <a id="logo" class="font-black text-blue-400 md:text-4xl text-3xl" href="/">Cat-Store</a>
 
         <ul>

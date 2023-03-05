@@ -12,7 +12,7 @@ class HomeController extends Controller
     {
         $cats = Cat::limit(8)->get();
 
-        $this->downloadCatImages();
+        // $this->downloadCatImages();
 
         return view('pages.home', [
             'cats' => $cats
@@ -26,7 +26,7 @@ class HomeController extends Controller
             $fileContents = @file_get_contents(env('CAT_API_URL'));
 
             if ($fileContents) file_put_contents($img, $fileContents);
-            else session()->flash('status', 'Could not connect to Cataas api!');
+            else session()->flash('status', 'Could not connect to Cataas api, their service is down!');
         }
     }
 }
