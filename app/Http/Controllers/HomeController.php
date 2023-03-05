@@ -12,7 +12,7 @@ class HomeController extends Controller
     {
         $cats = Cat::limit(8)->get();
 
-        // $this->downloadCatImages();
+        $this->downloadCatImages();
 
         return view('pages.home', [
             'cats' => $cats

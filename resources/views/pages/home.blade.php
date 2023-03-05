@@ -55,7 +55,7 @@
         <div id="slideshow-container" class="min-w-fit m-auto relative">
 
             @for ($i = 0; $i < env('TOTAL_HOMEPAGE_CATS'); $i++) <div class="slide-item {{ $i > 0 ? 'hidden':'' }}">
-                <img src="hero-cat-images/cat{{ $i }}.jpg" alt="image of cat :)" class="w-full object-contain" style="height: 485px;">
+                <img src="hero-cat-images/cat{{ $i }}.jpg" alt="image of cat :)" class="w-full object-contain fade-animation" style="height: 485px;">
         </div>
         @endfor
 
