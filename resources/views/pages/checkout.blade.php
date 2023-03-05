@@ -98,6 +98,10 @@
     ];
     const checkoutForm = document.getElementById('checkoutForm');
 
+    /*
+     * form onsubmit event handler
+     * validates inputs and shows alert if info invalid
+     */
     checkoutForm.addEventListener('submit', (e) => {
         e.preventDefault();
 
@@ -108,8 +112,8 @@
         formData.append("card_sec_code", document.getElementById("card_sec_code").value);
 
         if (!validateInputs(formData)) {
+            // !! TEMPORARY SOLUTION, SHOULD USE alert.blade.php component
             // display alert
-            // !! TEMPORARY SOLUTION, SHOULD USE alert.blade.php component !!
             const portalElem = document.getElementById('portal');
             const alertElem = document.createElement('div');
             alertElem.innerHTML = `<div id="error-alert" class="rounded-lg drop-shadow-xl md:w-96 w-72 text-center top-36 left-0 right-0 h-20 ml-auto mr-auto bg-red-50 md:px-5 md:py-4 py-3 px-4 fixed z-50">
@@ -127,7 +131,9 @@
     });
 
 
-    // Make request to CheckoutController::processPayment
+    /*
+     * Make http request to CheckoutController::processPayment function
+     */
     async function paymentRequest(formData) {
         try {
             const res = await fetch(`${"{{ url('/') }}"}/payment`, {
@@ -158,6 +164,10 @@
         return true;
     }
 
+    /*
+     * Returns the card processor of the credit card number given
+     * by using regex from cardProcessors array
+     */
     function getCardProcessor(cardNumber) {
         let cardProcessor;
 

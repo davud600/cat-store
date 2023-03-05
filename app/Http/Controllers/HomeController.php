@@ -8,9 +8,13 @@ use Illuminate\Contracts\View\View;
 
 class HomeController extends Controller
 {
+    /*
+     * Fetch data from db and return view with that data
+     */
     public function __invoke(): View
     {
-        $cats = Cat::limit(8)->get();
+        $limit = 8;
+        $cats = Cat::limit($limit)->get();
 
         $this->downloadCatImages();
 
@@ -19,6 +23,10 @@ class HomeController extends Controller
         ]);
     }
 
+    /*
+     * Download random cat images from an api
+     * and save them on the public directory
+     */
     private function downloadCatImages(): void
     {
         for ($i = 0; $i < env('TOTAL_HOMEPAGE_CATS'); $i++) {

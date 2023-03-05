@@ -1,48 +1,5 @@
 @extends('layouts.main')
 
-@section('head')
-<script defer>
-    /*
-     * This script manages the image slider by
-     * keeping track of an index which represents the current active image
-     */
-    let slideIndex = 1;
-    showSlides(slideIndex);
-
-    function plusSlides(n) {
-        showSlides((slideIndex += n), n > 0);
-    }
-
-    function currentSlide(n) {
-        showSlides((slideIndex = n), null);
-    }
-
-    function showSlides(n, animate) {
-        let i;
-        let slides = document.getElementsByClassName("slide-item");
-        let dots = document.getElementsByClassName("dot");
-
-        // Clamp slideIndex value (0 - slides.length)
-        if (n > slides.length)
-            slideIndex = 1;
-        if (n < 1)
-            slideIndex = slides.length;
-
-        // Disable inactive slide items
-        for (i = 0; i < slides.length; i++)
-            slides[i].style.display = "none";
-        for (i = 0; i < dots.length; i++)
-            dots[i].className = dots[i].className.replace(" active", "");
-
-        // Enable the active slide item
-        if (slides[slideIndex - 1])
-            slides[slideIndex - 1].style.display = "block";
-        if (dots[slideIndex - 1])
-            dots[slideIndex - 1].className += " active";
-    }
-</script>
-@endsection
-
 @section('content')
 <section id="hero-section" class="md:px-16 px-6">
     <div class="p-2">
@@ -126,4 +83,45 @@
         <a href="/cats" class="button text-center cursor-pointer bg-orange-500 w-full md:w-48 py-3 px-1 text-white rounded-lg font-bold my-6 hover:bg-orange-700 transition-all">View All</a>
     </div>
 </section>
+
+<script defer>
+    /*
+     * This script manages the image slider by
+     * keeping track of an index which represents the current active image
+     */
+    let slideIndex = 1;
+    showSlides(slideIndex);
+
+    function plusSlides(n) {
+        showSlides((slideIndex += n), n > 0);
+    }
+
+    function currentSlide(n) {
+        showSlides((slideIndex = n), null);
+    }
+
+    function showSlides(n, animate) {
+        let i;
+        let slides = document.getElementsByClassName("slide-item");
+        let dots = document.getElementsByClassName("dot");
+
+        // Clamp slideIndex value (0 - slides.length)
+        if (n > slides.length)
+            slideIndex = 1;
+        if (n < 1)
+            slideIndex = slides.length;
+
+        // Disable inactive slide items
+        for (i = 0; i < slides.length; i++)
+            slides[i].style.display = "none";
+        for (i = 0; i < dots.length; i++)
+            dots[i].className = dots[i].className.replace(" active", "");
+
+        // Enable the active slide item
+        if (slides[slideIndex - 1])
+            slides[slideIndex - 1].style.display = "block";
+        if (dots[slideIndex - 1])
+            dots[slideIndex - 1].className += " active";
+    }
+</script>
 @endsection

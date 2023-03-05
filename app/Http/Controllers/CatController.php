@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 
 class CatController extends Controller
 {
+    /*
+     * Fetch data from db and return view with that data
+     */
     public function cat($id): View
     {
         $cat = Cat::where('id', $id)
@@ -18,6 +21,9 @@ class CatController extends Controller
         ]);
     }
 
+    /*
+     * Fetch data from db and filter them based on the searchQuery param
+     */
     public function cats(Request $request): View
     {
         $cats = Cat::where('breed', 'LIKE', $request->query('searchQuery'))->get();

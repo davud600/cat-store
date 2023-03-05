@@ -18,6 +18,10 @@ class CreditCard implements ValidationRule
             $fail('Invalid Credit Card number!');
     }
 
+    /*
+     * Run through all the regex to check if any match the given number
+     * if not then the card is not valid
+     */
     private function validateCard($number): bool
     {
         $cardValid = false;

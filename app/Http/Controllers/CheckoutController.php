@@ -39,6 +39,10 @@ class CheckoutController extends Controller
         return redirect('/checkout');
     }
 
+    /*
+     * Saves shipping info to db table 'shippingAddresses'
+     * Saves order info to db table 'orders'
+     */
     public function processPayment(CheckoutPaymentRequest $request): JsonResponse
     {
         try {

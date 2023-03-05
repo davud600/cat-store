@@ -34,8 +34,10 @@
 </section>
 
 <script defer>
+    /*
+     * save cat data to session with php and redirect the user
+     */
     function adoptButtonOnClick() {
-        // save cat data to session with php
         "{{ session()->put('catInfo', $cat) }}";
 
         window.location.href = "/shipping";

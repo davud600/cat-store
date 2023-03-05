@@ -1,5 +1,7 @@
 <?php
-
+/*
+ * Returns all countries
+ */
 if (!function_exists('getAllCountries')) {
     function getAllCountries()
     {
