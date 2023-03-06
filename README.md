@@ -14,6 +14,7 @@
 
 - Landing Page:
     - Contains multiple sections to display images and info.
+    - Has an image carousel tha showcases 3 cat images that are fetched from an api called cataas (cats as a service).
     
 - Shipping Page:
     - After choosing a cat to adopt you are redirected to the shipping page,
